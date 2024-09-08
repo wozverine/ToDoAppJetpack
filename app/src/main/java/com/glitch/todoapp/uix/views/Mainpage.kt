@@ -102,7 +102,7 @@ fun Mainpage(navController: NavController, mainpageViewModel: MainpageViewModel)
 		},
 		floatingActionButton = {
 			FloatingActionButton(
-				onClick = { navController.navigate("kisiKayitSayfa") },
+				onClick = { navController.navigate("todoRegisterPage") },
 				content = {
 					Icon(
 						painter = painterResource(id = R.drawable.ekle_resim),
@@ -129,8 +129,8 @@ fun Mainpage(navController: NavController, mainpageViewModel: MainpageViewModel)
 							modifier = Modifier
 								.fillMaxWidth()
 								.clickable {
-									val kisiJson = Gson().toJson(todo)
-									navController.navigate("kisiDetaySayfa/$kisiJson")
+									val todoJson = Gson().toJson(todo)
+									navController.navigate("todoDetailPage/$todoJson")
 								},
 							horizontalArrangement = Arrangement.SpaceBetween,
 							verticalAlignment = Alignment.CenterVertically
@@ -141,8 +141,8 @@ fun Mainpage(navController: NavController, mainpageViewModel: MainpageViewModel)
 							IconButton(onClick = {
 								scope.launch {
 									val sb = snackbarHostState.showSnackbar(
-										message = "${todo.todo_name} silinsin mi?",
-										actionLabel = "EVET"
+										message = "Delete ${todo.todo_name}?",
+										actionLabel = "YES"
 									)
 
 									if (sb == SnackbarResult.ActionPerformed) {

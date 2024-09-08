@@ -25,17 +25,17 @@ fun PageSwitch(
 			Mainpage(navController, mainpageViewModel)
 		}
 		composable("todoRegisterPage") {
-			TodoRegisterScreen(todoRegisterViewModel)
+			TodoRegisterScreen(todoRegisterViewModel, navController)
 		}
 		composable(
-			route = "todoDeatilPage/{todo}",
+			route = "todoDetailPage/{todo}",
 			arguments = listOf(
 				navArgument("todo") { type = NavType.StringType }
 			)
 		) {
 			val json = it.arguments?.getString("todo")
 			val nesne = Gson().fromJson(json, Todos::class.java)
-			TodoDetailScreen(nesne, todoDetailViewModel)
+			TodoDetailScreen(nesne, todoDetailViewModel, navController)
 		}
 	}
 }

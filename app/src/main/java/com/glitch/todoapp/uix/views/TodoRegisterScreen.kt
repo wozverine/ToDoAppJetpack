@@ -17,11 +17,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.glitch.todoapp.uix.viewmodel.TodoRegisterViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TodoRegisterScreen(todoRegisterViewModel: TodoRegisterViewModel) {
+fun TodoRegisterScreen(
+	todoRegisterViewModel: TodoRegisterViewModel,
+	navController: NavController
+) {
 	val toDoName = remember { mutableStateOf("") }
 
 	Scaffold(topBar = { TopAppBar(title = { Text(text = "Todo Register") }) }) { paddingValues ->
@@ -42,6 +46,7 @@ fun TodoRegisterScreen(todoRegisterViewModel: TodoRegisterViewModel) {
 				modifier = Modifier.size(250.dp, 50.dp),
 				onClick = {
 					todoRegisterViewModel.save(toDoName.value)
+					navController.popBackStack()
 				}) { Text(text = "SAVE") }
 		}
 	}

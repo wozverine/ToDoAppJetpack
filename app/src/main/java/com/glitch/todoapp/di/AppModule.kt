@@ -32,7 +32,7 @@ class AppModule {
 	@Singleton
 	fun provideTodoDao(@ApplicationContext context: Context): TodoDao {
 		val vt = Room.databaseBuilder(context, Veritabani::class.java, "todo.sqlite")
-			.createFromAsset("todo.sqlite").build()
+			.createFromAsset("toDos.sqlite").build()
 		return vt.getTodoDao()
 	}
 }

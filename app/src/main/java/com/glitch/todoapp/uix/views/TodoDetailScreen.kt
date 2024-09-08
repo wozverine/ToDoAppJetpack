@@ -17,13 +17,19 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.glitch.todoapp.data.entity.Todos
 import com.glitch.todoapp.uix.viewmodel.TodoDetailViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TodoDetailScreen(comingTodo: Todos, todoDetailViewModel: TodoDetailViewModel) {
+fun TodoDetailScreen(
+	comingTodo: Todos,
+	todoDetailViewModel: TodoDetailViewModel,
+	navController: NavController
+) {
 	val tfTodo = remember { mutableStateOf("") }
 
 	LaunchedEffect(key1 = true) {
@@ -48,6 +54,7 @@ fun TodoDetailScreen(comingTodo: Todos, todoDetailViewModel: TodoDetailViewModel
 				modifier = Modifier.size(250.dp, 50.dp),
 				onClick = {
 					todoDetailViewModel.update(comingTodo.todo_id, tfTodo.value)
+					navController.popBackStack()
 				}) { Text(text = "UPDATE") }
 		}
 	}
