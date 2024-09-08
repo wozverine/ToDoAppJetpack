@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -31,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -114,17 +116,32 @@ fun Mainpage(navController: NavController, mainpageViewModel: MainpageViewModel)
 		snackbarHost = {
 			SnackbarHost(hostState = snackbarHostState)
 		}
+
+		//Upcoming To-do's
 	) { paddingValues ->
 		LazyColumn(
 			modifier = Modifier
 				.fillMaxSize()
 				.padding(paddingValues)
 		) {
+			item {
+				Text(
+					text = "Upcoming To-do's",
+					modifier = Modifier
+						.fillMaxWidth()
+						.padding(16.dp),
+					fontSize = 24.sp,
+					fontWeight = FontWeight.Bold
+				)
+			}
 			items(
 				count = todoList.value.count(),
 				itemContent = {//0,1,2
 					val todo = todoList.value[it]
-					Card(modifier = Modifier.padding(all = 5.dp)) {
+					Card(
+						modifier = Modifier
+							.padding(all = 10.dp)
+					) {
 						Row(
 							modifier = Modifier
 								.fillMaxWidth()
@@ -162,3 +179,6 @@ fun Mainpage(navController: NavController, mainpageViewModel: MainpageViewModel)
 		}
 	}
 }
+
+
+
